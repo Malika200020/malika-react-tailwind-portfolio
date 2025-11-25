@@ -15,24 +15,31 @@ export const AboutSection = () => {
             </h3>
 
             <p className="text-muted-foreground">
-              I'm a recent Software Engineering graduate passionate about building intelligent,
-              scalable, and reliable applications. With hands-on experience in{" "}
-              <strong>Java Spring Boot, Node.js, and AI/ML-powered systems</strong>, I enjoy solving
-              complex technical challenges and delivering high-quality software that meets real-world
-              needs.
+              I'm a recent Software Engineering graduate passionate about
+              building intelligent, scalable, and reliable applications. With
+              hands-on experience in{" "}
+              <strong>
+                Java Spring Boot, Node.js, and AI/ML-powered systems
+              </strong>
+              , I enjoy solving complex technical challenges and delivering
+              high-quality software that meets real-world needs.
             </p>
 
             <p className="text-muted-foreground">
               My academic and personal projects include an{" "}
-              <strong>AI-driven project management tool</strong> recognized at NBQSA 2025 and published
-              at IEEE ICCCNT 2025, as well as accessibility-focused and enterprise web applications.
-              I'm also skilled in integrating predictive analytics, APIs, and secure backend workflows.
+              <strong>AI-driven project management tool</strong> recognized at
+              NBQSA 2025 and published at IEEE ICCCNT 2025, as well as
+              accessibility-focused and enterprise web applications. I'm also
+              skilled in integrating predictive analytics, APIs, and secure
+              backend workflows.
             </p>
 
             <p className="text-muted-foreground">
-              I'm currently seeking an <strong>Associate Software Engineer</strong> position where I can
-              contribute my backend expertise, database knowledge, and problem-solving skills to a
-              forward-thinking team.
+              I am currently working as an{" "}
+              <strong>Associate Software Engineer</strong> at E-W Information
+              Systems Limited (EWIS) in Sri Lanka. I apply my backend expertise,
+              database knowledge, and strong problem-solving skills to
+              contribute to a forward-thinking technical team.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -58,10 +65,13 @@ export const AboutSection = () => {
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Full-Stack Development</h4>
+                  <h4 className="font-semibold text-lg">
+                    Full-Stack Development
+                  </h4>
                   <p className="text-muted-foreground">
-                    Developing enterprise and research-grade applications with MERN, Spring Boot,
-                    and Flask, combining frontend responsiveness with strong backend logic.
+                    Developing enterprise and research-grade applications with
+                    MERN, Spring Boot, and Flask, combining frontend
+                    responsiveness with strong backend logic.
                   </p>
                 </div>
               </div>
@@ -73,10 +83,13 @@ export const AboutSection = () => {
                   <Database className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Backend & System Integration</h4>
+                  <h4 className="font-semibold text-lg">
+                    Backend & System Integration
+                  </h4>
                   <p className="text-muted-foreground">
-                    Experienced in Java Spring Boot, MS SQL, JasperReports, API integration, and
-                    automated reporting from my internship at Epic Lanka Pvt. Ltd.
+                    Experienced in Java Spring Boot, MS SQL, JasperReports, API
+                    integration, and automated reporting from my internship at
+                    Epic Lanka Pvt. Ltd.
                   </p>
                 </div>
               </div>
@@ -90,9 +103,9 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Project Experience</h4>
                   <p className="text-muted-foreground">
-                    Contributed to secure, large-scale banking applications and report automation
-                    modules during my internship, while leading and delivering award-nominated
-                    academic projects.
+                    Contributed to secure, large-scale banking applications and
+                    report automation modules during my internship, while
+                    leading and delivering award-nominated academic projects.
                   </p>
                 </div>
               </div>
