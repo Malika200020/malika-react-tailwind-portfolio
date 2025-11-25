@@ -32,12 +32,13 @@ export const HeroSection = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I build intelligent and engaging software solutions using modern
-            technologies. With experience in full-stack development, AI/ML
-            integration, and user-focused design, I deliver applications that
-            are both functional and impactful. Currently seeking an Associate
-            Software Engineer position to contribute my skills and grow within
-            a dynamic team.
+            I specialize in creating efficient and innovative software solutions
+            using cutting-edge technologies. With hands-on experience in
+            full-stack development, AI/ML integration, and building user-centric
+            applications, I focus on delivering products that are both reliable
+            and impactful. Currently, I contribute as an Associate Software
+            Engineer at EWIS Sri Lanka, continuously enhancing my skills within
+            a collaborative and forward-thinking environment.
           </p>
 
           {/* Button */}
