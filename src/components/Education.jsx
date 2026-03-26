@@ -50,19 +50,22 @@ export const Education = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col">
-                <h3 className="text-lg font-semibold mb-3">{edu.title}</h3>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="text-lg font-semibold mb-4">{edu.title}</h3>
 
-                <ul className="space-y-3 text-sm text-muted-foreground mb-3">
+                <ul className="space-y-4 flex-1">
                   {edu.qualification.map((q, idx) => (
-                    <li key={idx} className="border-l-2 border-primary/20 pl-4">
-                      <div className="text-sm font-medium text-foreground mb-1">{q.level}</div>
+                    <li key={idx} className="border-l-2 border-primary/40 pl-4">
+                      <div className="text-sm font-medium text-foreground leading-snug mb-1">{q.level}</div>
                       <div className="text-xs text-muted-foreground">{q.year}</div>
                     </li>
                   ))}
                 </ul>
 
-                <p className="text-sm text-muted-foreground">{edu.location}</p>
+                <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-border/50">
+                  <GraduationCap size={14} className="text-primary shrink-0" />
+                  <span className="text-sm text-muted-foreground">{edu.location}</span>
+                </div>
               </div>
             </div>
           ))}
