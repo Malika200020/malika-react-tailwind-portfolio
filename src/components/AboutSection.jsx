@@ -1,12 +1,17 @@
 import { Briefcase, Code, Database } from "lucide-react";
+import { motion } from "framer-motion";
+import { cardHoverVariants, snap } from "@/lib/motion";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary">Me</span>
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">
+            About <span className="text-primary">Me</span>
+          </h2>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -51,7 +56,7 @@ export const AboutSection = () => {
                 href="/papers/CV_Malika Degaldoruwa_ASE.pdf"
                 download="CV_Malika Degaldoruwa_ASE.pdf"
                 type="application/pdf"
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-200 ease-snappy"
               >
                 Download CV
               </a>
@@ -59,7 +64,14 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
+            <motion.div
+              variants={cardHoverVariants}
+              initial="idle"
+              whileHover="hover"
+              whileTap="tap"
+              transition={snap}
+              className="gradient-border p-6 will-change-transform"
+            >
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Code className="h-6 w-6 text-primary" />
@@ -75,9 +87,16 @@ export const AboutSection = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="gradient-border p-6 card-hover">
+            <motion.div
+              variants={cardHoverVariants}
+              initial="idle"
+              whileHover="hover"
+              whileTap="tap"
+              transition={snap}
+              className="gradient-border p-6 will-change-transform"
+            >
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Database className="h-6 w-6 text-primary" />
@@ -93,9 +112,16 @@ export const AboutSection = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="gradient-border p-6 card-hover">
+            <motion.div
+              variants={cardHoverVariants}
+              initial="idle"
+              whileHover="hover"
+              whileTap="tap"
+              transition={snap}
+              className="gradient-border p-6 will-change-transform"
+            >
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Briefcase className="h-6 w-6 text-primary" />
@@ -109,7 +135,7 @@ export const AboutSection = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { cardHoverVariants, snap } from "@/lib/motion";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGithub, FaDocker, FaPython, FaJava
 } from "react-icons/fa";
@@ -19,7 +22,7 @@ const skills = [
 
   // Backend
   { name: "Node.js", category: "backend", icon: <FaNodeJs className="text-4xl text-green-500" /> },
-  { name: "Express.js", category: "backend", icon: <FaNodeJs className="text-4xl text-gray-700" /> },
+  { name: "Express.js", category: "backend", icon: <FaNodeJs className="text-4xl text-gray-700 dark:text-gray-300" /> },
   { name: "Spring Boot", category: "backend", icon: <SiSpringboot className="text-4xl text-green-600" /> },
   { name: "MongoDB", category: "backend", icon: <SiMongodb className="text-4xl text-green-600" /> },
   { name: "PostgreSQL", category: "backend", icon: <SiPostgresql className="text-4xl text-blue-500" /> },
@@ -55,36 +58,43 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary">Skills</span>
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center tracking-tight">
+            My <span className="text-primary">Skills</span>
+          </h2>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-foreground hover:bg-secondary"
-              )}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category, key) => (
+              <button
+                key={key}
+                onClick={() => setActiveCategory(category)}
+                className={cn(
+                  "px-5 py-2 rounded-full transition-all duration-200 ease-snappy capitalize active:scale-95",
+                  activeCategory === category
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary/70 text-foreground hover:bg-secondary"
+                )}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </Reveal>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div key={activeCategory} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in-fast">
           {filteredSkills.map((skill, key) => (
-            <div
+            <motion.div
               key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover flex flex-col items-center justify-center text-center"
+              variants={cardHoverVariants}
+              initial="idle"
+              whileHover="hover"
+              whileTap="tap"
+              transition={snap}
+              className="bg-card p-6 rounded-lg flex flex-col items-center justify-center text-center will-change-transform"
             >
               {skill.icon}
               <h3 className="font-semibold text-lg mt-3">{skill.name}</h3>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,4 +1,7 @@
-const experiences = [
+import { ExperienceCard } from "@/components/cards/ExperienceCard";
+import { Reveal } from "@/components/ui/Reveal";
+
+const internshipExperiences = [
     {
         id: 1,
         title: "Seylan Admin Web Application",
@@ -44,68 +47,75 @@ const experiences = [
     }
 ];
 
-import { CheckCircle2 } from "lucide-react";
+const currentExperiences = [
+    {
+        id: 4,
+        title: "Archdiocese School Management System",
+        projectType: "Business Analysis • System Design • Full-stack Development",
+        tools: ["React", "Node.js", "Express", "MySQL", "JWT", "REST APIs", "Chart.js/Recharts", "Git"],
+        image: "/experience/bishopsSystem.png",
+        intro: "Developed a comprehensive multi-school management platform used by private, international, and vested schools to streamline administration and academic operations.",
+        bullets: [
+            "Led business requirement gathering sessions and collaborated directly with school administrators and stakeholders to define system workflows and functional requirements.",
+            "Designed the application architecture, database structure, and REST API layer for scalable school management operations.",
+            "Developed complete frontend and backend modules using React, Node.js, Express, and MySQL with secure role-based authentication and authorization.",
+            "Implemented student, teacher, school, document, and administrative management modules with advanced filtering, search, bulk operations, and analytics dashboards.",
+            "Built reporting and visualization features including charts, statistics dashboards, and operational insights for school administrators.",
+            "Designed secure document management workflows supporting uploads, downloads, approval processes, and production-ready storage architecture."
+        ],
+        outcome: "Delivered a scalable platform now used in production across multiple schools, with ongoing enhancements driven by direct client collaboration."
+    },
+    {
+        id: 5,
+        title: "Chandananda College Management System",
+        projectType: "Business Analysis • System Design • Full-stack Development",
+        tools: ["React", "Node.js", "Express", "MySQL", "REST APIs", "JWT Authentication", "Git"],
+        image: "/experience/schoolMgtApp.png",
+        intro: "Designed and developed a complete digital management system for Chandananda College to modernize student administration, academic record management, teacher onboarding, and library operations.",
+        bullets: [
+            "Conducted stakeholder meetings and gathered functional requirements from school management to define business processes and system features.",
+            "Designed database structures and application workflows for student, teacher, academic, and library management.",
+            "Developed responsive frontend interfaces and backend APIs for student admissions, teacher onboarding, record management, and administrative operations.",
+            "Implemented student profile management, academic marks management, attendance and record tracking, and searchable administrative dashboards.",
+            "Built a complete library management module supporting book cataloging, borrowing, returns, inventory tracking, and librarian administration."
+        ],
+        outcome: "Delivered the project end-to-end, from initial analysis through implementation, testing, deployment, and ongoing client support."
+    }
+];
 
 export const Experience = () => {
     return (
         <section id="experience" className="py-24 px-4 relative">
             <div className="container mx-auto max-w-5xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-                    Professional <span className="text-primary">Experience</span>
-                </h2>
+                <Reveal>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center tracking-tight">
+                        Professional <span className="text-primary">Experience</span>
+                    </h2>
 
-                <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                    Highlights from my internship at Epic Lanka Pvt. Ltd., working on impactful projects for enterprise clients.
-                </p>
+                    <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+                        Highlights from my internship at Epic Lanka Pvt. Ltd. and my current role as an Associate Software Engineer at E-W Information Systems (Pvt) Ltd.
+                    </p>
+                </Reveal>
 
+                <h3 className="text-2xl font-semibold mb-6 tracking-tight">
+                    Associate Software Engineer <span className="text-primary">— E-W Information Systems (Pvt) Ltd</span>
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {experiences.map((exp, key) => (
-                        <div
-                            key={key}
-                            className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
-                        >
-                            <div className="h-48 overflow-hidden">
-                                <img
-                                    src={exp.image}
-                                    alt={exp.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                            </div>
+                    {currentExperiences.map((exp, idx) => (
+                        <Reveal key={exp.id} delay={Math.min(idx * 0.06, 0.3)} className="h-full">
+                            <ExperienceCard exp={exp} />
+                        </Reveal>
+                    ))}
+                </div>
 
-                            <div className="p-6">
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {exp.tools.map((tool, index) => (
-                                        <span
-                                            key={index}
-                                            className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                                        >
-                                            {tool}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                <h3 className="text-xl font-semibold mb-2">{exp.title}</h3>
-                                <p className="text-sm text-muted-foreground mb-3">
-                                    <strong>Project Type:</strong> {exp.projectType}
-                                </p>
-                                <p className="text-muted-foreground text-sm mb-4">{exp.intro}</p>
-
-                                <ul className="space-y-2 mb-4">
-                                    {exp.bullets.map((point, idx) => (
-                                        <li key={idx} className="flex items-center gap-2">
-                                            <CheckCircle2
-                                                className="text-primary shrink-0"
-                                                size={16}
-                                            />
-                                            <span className="text-sm text-muted-foreground">{point}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-
-                                <p className="text-sm text-foreground font-medium">{exp.outcome}</p>
-                            </div>
-                        </div>
+                <h3 className="text-2xl font-semibold mb-6 mt-16 tracking-tight">
+                    Internship <span className="text-primary">— Epic Lanka Pvt. Ltd.</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {internshipExperiences.map((exp, idx) => (
+                        <Reveal key={exp.id} delay={Math.min(idx * 0.06, 0.3)} className="h-full">
+                            <ExperienceCard exp={exp} />
+                        </Reveal>
                     ))}
                 </div>
             </div>

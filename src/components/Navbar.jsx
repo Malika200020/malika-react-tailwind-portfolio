@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -50,37 +51,12 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      // Store current scroll position
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      // Restore scroll position
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-      }
-    }
-
-    // Cleanup on component unmount
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
-  }, [isMenuOpen]);
+  useScrollLock(isMenuOpen);
 
   return (
     <nav
       className={cn(
-        "fixed top-0 w-full z-40 transition-all duration-300",
+        "fixed top-0 w-full z-40 transition-all duration-200 ease-snappy",
         isScrolled
           ? "py-3 bg-background/80 backdrop-blur-md shadow-lg border-b border-border/50"
           : "py-5 bg-transparent"
@@ -103,40 +79,42 @@ export const Navbar = () => {
             <a
               key={key}
               href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300 relative z-10"
+              className="text-foreground/80 hover:text-primary transition-colors duration-200 ease-snappy relative z-10"
             >
               {item.name}
             </a>
           ))}
         </div>
 
-        {/* theme toggle — visible on all screen sizes */}
-        <button
-          onClick={toggleTheme}
-          className="p-2 text-foreground relative z-50"
-          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          {isDarkMode ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-900 dark:text-foreground" />}
-        </button>
+        <div className="flex items-center">
+          {/* theme toggle — visible on all screen sizes */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-foreground relative z-50 transition-transform duration-200 ease-snappy hover:scale-110 active:scale-95"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={20} className="text-yellow-300" /> : <Moon size={20} className="text-blue-900 dark:text-foreground" />}
+          </button>
 
-        {/* mobile nav toggle */}
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground relative z-45"
-          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* mobile nav toggle */}
+          <button
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="md:hidden p-2 text-foreground relative z-45"
+            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* mobile nav menu */}
         <div
           className={cn(
             "fixed inset-0 bg-background/95 backdrop-blur-md z-40",
-            "transition-all duration-300 md:hidden",
+            "transition-all duration-200 ease-snappy md:hidden",
             "flex flex-col items-center justify-center",
             isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+              ? "opacity-100 scale-100 pointer-events-auto"
+              : "opacity-0 scale-95 pointer-events-none"
           )}
           style={{
             position: 'fixed',
@@ -153,7 +131,7 @@ export const Navbar = () => {
               <a
                 key={key}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                className="text-foreground/80 hover:text-primary transition-colors duration-200 ease-snappy"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

@@ -1,22 +1,39 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
   --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
 
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
   --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.7s ease-out forwards;
-  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
-  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+  --animate-fade-in: fade-in 0.5s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 0.5s ease-out 0.15s forwards;
+  --animate-fade-in-delay-2: fade-in 0.5s ease-out 0.3s forwards;
+  --animate-fade-in-delay-3: fade-in 0.5s ease-out 0.45s forwards;
+  --animate-fade-in-delay-4: fade-in 0.5s ease-out 0.6s forwards;
+  --animate-fade-in-fast: fade-in-fast 0.15s ease-out forwards;
   --animate-meteor: meteor 5s linear infinite;
 
   @keyframes float {
@@ -40,11 +57,19 @@
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  @keyframes fade-in-fast {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
   @keyframes meteor {
@@ -68,11 +93,23 @@
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
     --primary: 250 47% 60%;
     --primary-foreground: 210 40% 98%;
 
+    --secondary: 220 30% 94%;
+    --secondary-foreground: 222 47% 20%;
+
+    --muted: 220 25% 94%;
+    --muted-foreground: 220 14% 42%;
+
+    --accent: 250 47% 92%;
+    --accent-foreground: 250 47% 30%;
+
     --border: 214 32% 91%;
+    --input: 214 32% 88%;
+    --ring: 250 47% 60%;
   }
 
   .dark {
@@ -80,11 +117,23 @@
     --foreground: 213 31% 91%;
 
     --card: 222 47% 8%;
+    --card-foreground: 213 31% 91%;
 
     --primary: 250 65% 65%;
     --primary-foreground: 213 31% 91%;
 
+    --secondary: 222 35% 14%;
+    --secondary-foreground: 213 31% 88%;
+
+    --muted: 222 30% 13%;
+    --muted-foreground: 217 18% 65%;
+
+    --accent: 250 40% 18%;
+    --accent-foreground: 250 65% 85%;
+
     --border: 217 33% 20%;
+    --input: 217 33% 22%;
+    --ring: 250 65% 65%;
   }
 
   * {
@@ -93,11 +142,33 @@
 
   html {
     @apply scroll-smooth;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.4) transparent;
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary) / 0.35);
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+    transition: background-color 0.2s var(--ease-snappy);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--primary) / 0.6);
   }
 }
 
@@ -127,20 +198,23 @@
   text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
 }
 
+@utility text-gradient {
+  @apply bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent;
+}
+
 @utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  @apply transition-[transform,box-shadow,border-color] duration-200 ease-snappy
+         hover:-translate-y-0.5 hover:shadow-lg hover:ring-1 hover:ring-primary/20;
 }
 
 @utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
-  border: 1px solid transparent;
+  @apply relative rounded-md border border-primary/15 bg-card
+         transition-colors duration-200 ease-snappy hover:border-primary/40;
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium
+         transition-all duration-200 ease-snappy hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
          hover:scale-105 active:scale-95;
 }
 

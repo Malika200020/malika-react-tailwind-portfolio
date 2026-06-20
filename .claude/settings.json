@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx eslint *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(node .tmp-verify-motion.mjs)",
+      "Bash(node .tmp-verify-footer.mjs)",
+      "Bash(node .tmp-footer3.mjs)",
+      "Bash(node .tmp-scrollbar.mjs)"
+    ]
+  }
+}
