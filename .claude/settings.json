@@ -7,7 +7,9 @@
       "Bash(node .tmp-verify-motion.mjs)",
       "Bash(node .tmp-verify-footer.mjs)",
       "Bash(node .tmp-footer3.mjs)",
-      "Bash(node .tmp-scrollbar.mjs)"
+      "Bash(node .tmp-scrollbar.mjs)",
+      "Bash(node .tmp-hero-mobile.mjs)",
+      "Bash(node .tmp-hero-desktop.mjs)"
     ]
   }
 }
